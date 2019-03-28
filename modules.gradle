@@ -1,0 +1,8 @@
+project(':a') {
+}
+
+project(':b') {
+    dependencies {
+        compile project(':a')
+    }
+}

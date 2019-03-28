@@ -1,0 +1,30 @@
+allprojects {
+    apply plugin: 'java'
+}
+
+subprojects {
+    new File("${rootDir}", project.name).mkdir()
+    sourceSets {
+        main {
+            java {
+                srcDirs = ["${rootDir}/src/main/java"]
+                include 'com/company/' + project.name + '/**'
+            }
+            resources.srcDirs = ["${rootDir}/src/main/resources/" + project.name]
+        }
+        test {
+            java {
+                srcDirs = ["${rootDir}/src/test/java"]
+                include 'com/company/' + project.name + '/**'
+            }
+            resources.srcDirs = ["${rootDir}/src/test/resources/" + project.name]
+        }
+    }
+}
+
+sourceSets.main.java.srcDirs = []
+sourceSets.test.java.srcDirs = []
+sourceSets.main.resources.srcDirs = []
+sourceSets.test.resources.srcDirs = []
+
+apply from: "${rootDir}/modules.gradle"
